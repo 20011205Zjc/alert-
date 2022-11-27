@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>hsycmsAlert弹窗插件</title>
+ <link rel="stylesheet" href="static/css/hsycmsAlert.min.css">
+ <script src="static/js/jquery-1.10.2.js"></script>
+ <script src="static/js/hsycmsAlert.min.js"></script>
+</head>
+
+<body>
+
+ <style>
+ body,html{ width:100%; height:100%;}
+ body{ max-width:640px; margin:0 auto;} 
+ .btnss{
+    display:flex;
+    height:100%;
+    justify-items: center;
+    flex-direction: column; 
+    justify-content: center;
+ }
+ .box{ padding:20px; background:#f1f1f1; overflow: hidden; color:#333;}
+ .box h2{ font-size:16px; padding-bottom:12px;}
+ .box h3{color:#f54655; font-size:15px;}
+ .box p{ font-size:14px; color:#444; padding-top:10px;}
+ .btnss button{ padding:10px; cursor: pointer;  height:40px; min-width:120px;border:0; color:#FFF; margin:10px 0; border-radius:40px;}
+ </style>
+ <div class="box">
+   <h2>hsycmsAlert弹窗插件 炫酷动画</h2>
+   <div class="btnss">  
+    <button type="button" onclick="alert('普通弹窗文字说明')" style="background:#333;">普通弹窗</button>
+    <button type="button" onclick="tips('提示文字说明')" style="background:#f68909;">提示弹窗</button>
+    <button type="button" onclick="confirm()" style="background:#14bf24;">询问弹窗</button>
+    <button type="button" onclick="loading()" style="background:#f345dc;">Loading</button>
+    <button type="button" onclick="success()" style="background:#238af4;">成功</button>
+    <button type="button" onclick="error()" style="background:#f54655;">失败</button> 
+  </div>
+  <h3>使用说明</h3>
+  <p>引入：jquery.js 和 hsycmsAlert.js<br>样式文件： hsycmsAlert.css </p>
+</div>
+
+
+
+ <script>
+    //参数说明 id,文字,方法
+
+   //普通弹窗 
+   function alert(txt){     
+      hsycms.alert(txt,()=>{
+				console.log("关闭后");
+			})
+   }
+
+   //提示弹窗
+   function tips(txt){
+     hsycms.tips(txt,()=>{
+       console.log("提示关闭后");
+     },2000)
+   }
+
+   //询问弹窗
+   function confirm(){
+      hsycms.confirm('确定要这么做',
+         function(res){            
+            hsycms.success('点击了确定');
+         },
+        function(res){
+            hsycms.fail('点击了取消');
+         },
+      )
+   }
+
+   //操作成功调用 
+   function success(){
+     hsycms.success('操作成功',()=>{  console.log('操作成功关闭后');  },1800)
+   }
+
+   //操作失败调用
+   function error(){
+    hsycms.fail('操作失败',()=>{  console.log('操作失败关闭后');  },1800)
+   }
+
+   //显示loading
+   function loading(){
+      hsycms.loading('正在加载');
+      //2秒后隐藏
+      setTimeout(res=>{
+         hsycms.closeAll();
+      },2000)
+   }
+
+ </script>
+
+
+
+</body>
+
+</html>
